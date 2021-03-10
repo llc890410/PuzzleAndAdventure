@@ -21,27 +21,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
+import org.altbeacon.beacon.BeaconParser;
 
 public class MainActivity extends AppCompatActivity {
 
-    //新增開啟藍芽定位
+    //新增開啟藍芽及定位
     //新增獲取藍芽權限(不確定)
 
     private AppBarConfiguration mAppBarConfiguration;
     private static final String TAG = "Game03";
 
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
-
-    //IBeacon 封包格式
-    public static final String IBEACON_FORMAT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
-    //感興趣的UUID
-
-    private static final long DEFAULT_FOREGROUND_SCAN_PERIOD = 1000L;
-    private static final long DEFAULT_FOREGROUND_BETWEEN_SCAN_PERIOD = 1000L;
-
-    private static final String FILTER_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825";
-    private BeaconManager beaconManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
