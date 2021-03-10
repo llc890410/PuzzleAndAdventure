@@ -3,10 +3,13 @@ package com.example.game03;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -36,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Game03";
 
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
-    private static final int REQUEST_ENABLE_BT = 2;
+    private static final int REQUEST_ENABLE_BLUETOOTH = 2;
+    private static final int REQUEST_ENABLE_LOCATION = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,"requestLocationPermissions()");
         requestLocationPermissions();
         enableBluetooth();
+        enableLocation();
     }
 
     @Override
@@ -93,9 +98,18 @@ public class MainActivity extends AppCompatActivity {
     private void enableBluetooth(){
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!bluetoothAdapter.isEnabled()) {
-            Log.e(TAG,"藍芽未開啟");
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            Log.e(TAG,"藍芽功能未開啟");
+            Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH);
+        }
+    }
+
+    private void enableLocation(){
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            Log.e(TAG,"定位功能未開啟");
+            Intent enableLocationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivityForResult(enableLocationIntent, REQUEST_ENABLE_LOCATION);
         }
     }
 
@@ -135,12 +149,23 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode){
-            case REQUEST_ENABLE_BT:{
 
+            case REQUEST_ENABLE_BLUETOOTH:{
                 switch (resultCode){
                     case RESULT_OK:
                         Log.d(TAG,"藍芽開啟成功");
-                        Toast.makeText(getApplicationContext(),"Bluetooth Turned ON",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"藍芽功能開啟",Toast.LENGTH_SHORT).show();
+                        break;
+                    case RESULT_CANCELED:
+                        Log.d(TAG,"藍芽開啟失敗");
+                        break;
+                }
+            }
+            case REQUEST_ENABLE_LOCATION:{
+                switch (resultCode){
+                    case RESULT_OK:
+                        Log.d(TAG,"定位開啟成功");
+                        Toast.makeText(getApplicationContext(),"定位功能開啟",Toast.LENGTH_SHORT).show();
                         break;
                     case RESULT_CANCELED:
                         Log.d(TAG,"藍芽開啟失敗");
