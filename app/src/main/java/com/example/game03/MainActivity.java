@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int REQUEST_ENABLE_BLUETOOTH = 2;
-    private static final int REQUEST_ENABLE_LOCATION = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             Log.e(TAG,"定位功能未開啟");
             Intent enableLocationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            startActivityForResult(enableLocationIntent, REQUEST_ENABLE_LOCATION);
+            startActivity(enableLocationIntent);
         }
     }
 
@@ -145,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -161,17 +162,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             }
-            case REQUEST_ENABLE_LOCATION:{
-                switch (resultCode){
-                    case RESULT_OK:
-                        Log.d(TAG,"定位開啟成功");
-                        Toast.makeText(getApplicationContext(),"定位功能開啟",Toast.LENGTH_SHORT).show();
-                        break;
-                    case RESULT_CANCELED:
-                        Log.d(TAG,"藍芽開啟失敗");
-                        break;
-                }
-            }
+
         }
     }
 
