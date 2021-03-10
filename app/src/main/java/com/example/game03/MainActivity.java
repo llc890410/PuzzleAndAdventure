@@ -2,12 +2,15 @@ package com.example.game03;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,13 +30,13 @@ import org.altbeacon.beacon.BeaconParser;
 
 public class MainActivity extends AppCompatActivity {
 
-    //新增開啟藍芽及定位
-    //新增獲取藍芽權限(不確定)
+    //新增開啟定位
 
     private AppBarConfiguration mAppBarConfiguration;
     private static final String TAG = "Game03";
 
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
+    private static final int REQUEST_ENABLE_BT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG,"requestLocationPermissions()");
         requestLocationPermissions();
+        enableBluetooth();
     }
 
     @Override
@@ -83,6 +87,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             builder.show();
+        }
+    }
+
+    private void enableBluetooth(){
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (!bluetoothAdapter.isEnabled()) {
+            Log.e(TAG,"藍芽未開啟");
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
     }
 
@@ -114,6 +127,25 @@ public class MainActivity extends AppCompatActivity {
                     builder.show();
                 }
 
+            }
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQUEST_ENABLE_BT:{
+
+                switch (resultCode){
+                    case RESULT_OK:
+                        Log.d(TAG,"藍芽開啟成功");
+                        Toast.makeText(getApplicationContext(),"Bluetooth Turned ON",Toast.LENGTH_SHORT).show();
+                        break;
+                    case RESULT_CANCELED:
+                        Log.d(TAG,"藍芽開啟失敗");
+                        break;
+                }
             }
         }
     }
