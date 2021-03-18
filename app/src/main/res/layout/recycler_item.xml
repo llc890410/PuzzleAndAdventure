@@ -6,11 +6,11 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView_Word"
+        android:id="@+id/tvTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="寶箱"
+        android:text="任務"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_GetChinese"
+        android:id="@+id/btnUnlock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -26,12 +26,12 @@
         android:layout_marginBottom="16dp"
         android:text="解鎖"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/imgCheckbox"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

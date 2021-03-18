@@ -17,7 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.game03.MyListAdapter;
 import com.example.game03.R;
 
 import org.altbeacon.beacon.Beacon;
@@ -27,7 +31,10 @@ import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Random;
 
 public class HomeFragment extends Fragment implements BeaconConsumer{
 
@@ -37,18 +44,31 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     public static final String IBEACON_FORMAT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
     //感興趣的UUID
     private static final String FILTER_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825";
-
     private static final long DEFAULT_FOREGROUND_SCAN_PERIOD = 1000L;
     private static final long DEFAULT_FOREGROUND_BETWEEN_SCAN_PERIOD = 1000L;
-
     private BeaconManager beaconManager;
+
+    protected RecyclerView mRecyclerView;
+    protected MyListAdapter myListAdapter;
+    protected String[] mDataset;
+    private static final int DATASET_COUNT = 7;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        initDataset();
+
         Button btnStart = root.findViewById(R.id.btnStart);
         Button btnStop = root.findViewById(R.id.btnStop);
+
+
+
+        mRecyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+        myListAdapter = new MyListAdapter(mDataset);
+        mRecyclerView.setAdapter(myListAdapter);
 
         initBeacon();
 
@@ -81,6 +101,13 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         });
 
         return root;
+    }
+
+    private void initDataset() {
+        mDataset = new String[DATASET_COUNT];
+        for (int i = 0; i < DATASET_COUNT; i++) {
+            mDataset[i] = "任務#" + i;
+        }
     }
 
     private void initBeacon() {
