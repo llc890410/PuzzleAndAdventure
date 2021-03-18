@@ -36,11 +36,11 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     //IBeacon 封包格式
     public static final String IBEACON_FORMAT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
     //感興趣的UUID
+    private static final String FILTER_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825";
 
     private static final long DEFAULT_FOREGROUND_SCAN_PERIOD = 1000L;
     private static final long DEFAULT_FOREGROUND_BETWEEN_SCAN_PERIOD = 1000L;
 
-    private static final String FILTER_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825";
     private BeaconManager beaconManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
