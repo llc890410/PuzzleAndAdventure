@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.game03.MyListAdapter;
 import com.example.game03.R;
@@ -52,6 +53,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     protected MyListAdapter myListAdapter;
     protected String[] mDataset;
     private static final int DATASET_COUNT = 7;
+    protected SwipeRefreshLayout swipeRefreshLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -69,6 +71,11 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         myListAdapter = new MyListAdapter(mDataset);
         mRecyclerView.setAdapter(myListAdapter);
+
+        swipeRefreshLayout = root.findViewById(R.id.refreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(()->{
+            swipeRefreshLayout.setRefreshing(false);
+        });
 
         initBeacon();
 
