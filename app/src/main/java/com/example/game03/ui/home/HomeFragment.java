@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     private void initDataset() {
         mDataset = new String[DATASET_COUNT];
         for (int i = 0; i < DATASET_COUNT; i++) {
-            mDataset[i] = "任務#" + i;
+            mDataset[i] = "任務#" + (i+1);
         }
     }
 
