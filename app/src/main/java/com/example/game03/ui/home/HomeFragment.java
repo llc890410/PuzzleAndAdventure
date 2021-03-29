@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         mRecyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
-        myListAdapter = new MyListAdapter(mDataset);
+        myListAdapter = new MyListAdapter(mDataset, getApplicationContext());
         mRecyclerView.setAdapter(myListAdapter);
 
         swipeRefreshLayout = root.findViewById(R.id.refreshLayout);
