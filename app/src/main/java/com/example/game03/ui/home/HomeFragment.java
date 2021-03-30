@@ -52,7 +52,9 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     protected RecyclerView mRecyclerView;
     protected MyListAdapter myListAdapter;
     protected String[] mDataset;
-    private static final int DATASET_COUNT = 7;
+
+    private static final int taskNumber = 7;
+
     protected SwipeRefreshLayout swipeRefreshLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -111,8 +113,10 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     }
 
     private void initDataset() {
-        mDataset = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
+        //設定初始的list要有哪些
+        mDataset = new String[taskNumber];
+
+        for (int i = 0; i < taskNumber; i++) {
             mDataset[i] = "任務#" + (i+1);
         }
     }
