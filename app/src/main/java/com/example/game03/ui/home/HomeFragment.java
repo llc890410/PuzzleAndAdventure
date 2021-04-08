@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
             @Override
             public void onClick(View v) {
 
-                if (btnStartState == false){ //尚未開啟掃描
+                if (!btnStartState){ //尚未開啟掃描
                     Log.e(TAG,"push btnStart");
                     try {
                         //啟動搜索，不然不會調用didRangeBeaconsInRegion method
@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
                     btnStart.setText("STOP");
                     btnStartState = true;
                 }
-                else if (btnStartState == true){ //正在掃描
+                else if (btnStartState){ //正在掃描
                     Log.e(TAG,"push btnStop");
                     try {
                         //停止搜索
@@ -125,12 +125,24 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
         mListDataSet = new ArrayList<>();
 
-        for (int i = 0; i < taskNumber-3; i++) {
-            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false));
+        /*for (int i = 0; i < taskNumber; i++) {
+            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false, false));
+        }*/
+
+        //test data
+        for (int i = 0; i < 2; i++) {
+            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false, false));
         }
-        for (int i = 4; i < 7; i++) {
-            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),true));
+        for (int i = 2; i < 4; i++) {
+            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false, true));
         }
+        for (int i = 4; i < 6; i++) {
+            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),true,false));
+        }
+        for (int i = 6; i < 7; i++) {
+            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),true,true));
+        }
+
     }
 
     private void initBeacon() {

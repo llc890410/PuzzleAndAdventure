@@ -76,22 +76,31 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 break;
             case 4:
                 holder.mView.setBackgroundColor(context.getColor(R.color.blue));
+                holder.tvTask.setTextColor(context.getColor(R.color.white));
                 break;
             case 5:
                 holder.mView.setBackgroundColor(context.getColor(R.color.navy));
+                holder.tvTask.setTextColor(context.getColor(R.color.white));
                 break;
             case 6:
                 holder.mView.setBackgroundColor(context.getColor(R.color.purple));
+                holder.tvTask.setTextColor(context.getColor(R.color.white));
                 break;
         }
 
         Log.i(TAG,"position="+position+" isFinished="+mListDataSet.get(position).isFinished());
 
         //判斷isFinished更改checkBox圖片
-        if (mListDataSet.get(position).isFinished() == true){
+        if (mListDataSet.get(position).isFinished()){
             holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_36);
-        }else if (mListDataSet.get(position).isFinished() == false){
+        }else if (!mListDataSet.get(position).isFinished()){
             holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_36);
+        }
+        //
+        if (mListDataSet.get(position).isSearched()){
+            holder.btnUnlock.setVisibility(View.VISIBLE);
+        }else if (!mListDataSet.get(position).isSearched()){
+            holder.btnUnlock.setVisibility(View.INVISIBLE);
         }
 
     }

@@ -4,15 +4,13 @@ public class ListData {
     private int taskId;
     private String taskName;
     private boolean isFinished;
+    private boolean isSearched;
 
-    public ListData(int taskId, String taskName, boolean isFinished){
+    public ListData(int taskId, String taskName, boolean isFinished, boolean isSearched){
         this.taskId = taskId;
         this.taskName = taskName;
         this.isFinished = isFinished;
-    }
-
-    public int getTaskId() {
-        return taskId;
+        this.isSearched = isSearched;
     }
 
     public String getTaskName(){
@@ -21,5 +19,9 @@ public class ListData {
 
     public boolean isFinished() {
         return isFinished;
+    }
+
+    public boolean isSearched() {
+        return isSearched;
     }
 }
