@@ -54,6 +54,8 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     protected RecyclerView mRecyclerView;
     protected MyListAdapter myListAdapter;
 
+    private boolean btnStartState = false;
+
     protected List<ListData> mListDataSet;
 
     private static final int taskNumber = 7;
@@ -64,10 +66,9 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        initDataset();
+        initDataSet();
 
         Button btnStart = root.findViewById(R.id.btnStart);
-        Button btnStop = root.findViewById(R.id.btnStop);
 
         mRecyclerView = root.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -85,35 +86,41 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG,"push btnStart");
-                try {
-                    //啟動搜索，不然不會調用didRangeBeaconsInRegion method
-                    beaconManager.startRangingBeaconsInRegion(new Region("allBeacons", null, null, null));
-                    Log.e(TAG,"Start Ranging");
-                } catch (RemoteException e){
-                    e.printStackTrace();
+
+                if (btnStartState == false){ //尚未開啟掃描
+                    Log.e(TAG,"push btnStart");
+                    try {
+                        //啟動搜索，不然不會調用didRangeBeaconsInRegion method
+                        beaconManager.startRangingBeaconsInRegion(
+                                new Region("allBeacons", null, null, null));
+                        Log.e(TAG,"Start Ranging");
+                    } catch (RemoteException e){
+                        e.printStackTrace();
+                    }
+                    btnStart.setText("STOP");
+                    btnStartState = true;
+                }
+                else if (btnStartState == true){ //正在掃描
+                    Log.e(TAG,"push btnStop");
+                    try {
+                        //停止搜索
+                        beaconManager.stopRangingBeaconsInRegion(
+                                new Region("allBeacons", null, null, null));
+                        Log.e(TAG,"Stop Ranging.");
+                    } catch (RemoteException e){
+                        e.printStackTrace();
+                    }
+                    btnStart.setText("START");
+                    btnStartState = false;
                 }
             }
         });
 
-        btnStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG,"push btnStop");
-                try {
-                    //停止搜索
-                    beaconManager.stopRangingBeaconsInRegion(new Region("allBeacons", null, null, null));
-                    Log.e(TAG,"Stop Ranging.");
-                } catch (RemoteException e){
-                    e.printStackTrace();
-                }
-            }
-        });
 
         return root;
     }
 
-    private void initDataset() {
+    private void initDataSet() {
         //設定初始的list要有哪些
 
         mListDataSet = new ArrayList<>();
