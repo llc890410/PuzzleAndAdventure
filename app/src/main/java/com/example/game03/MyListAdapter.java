@@ -17,13 +17,11 @@ import java.util.List;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
 
-    private String[] mDataSet;
     private List<ListData> mListDataSet;
     private Context context;
 
     public MyListAdapter(List<ListData> dataSet, Context context) {
 
-        //mDataSet = dataSet;
         mListDataSet = dataSet;
         this.context = context;
     }
@@ -55,8 +53,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Get element from your dataset at this position and replace the contents of the view
-        // with that element
+        // Get element from your dataSet at this position and replace the contents of the view with that element
         holder.tvTask.setText(mListDataSet.get(position).getTaskName());
         //holder.tvTask.setBackgroundColor(context.getColor(R.color.white));
         holder.tvTask.setTextColor(context.getColor(R.color.black));

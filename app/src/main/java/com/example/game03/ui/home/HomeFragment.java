@@ -53,7 +53,6 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
     protected RecyclerView mRecyclerView;
     protected MyListAdapter myListAdapter;
-    protected String[] mDataset;
 
     protected List<ListData> mListDataSet;
 
@@ -116,19 +115,12 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
     private void initDataset() {
         //設定初始的list要有哪些
-        //mDataset = new String[taskNumber];
-
-        //for (int i = 0; i < taskNumber; i++) {
-        //    mDataset[i] = "任務#" + (i+1);
-        //}
 
         mListDataSet = new ArrayList<>();
 
         for (int i = 0; i < taskNumber; i++) {
             mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false));
         }
-
-
     }
 
     private void initBeacon() {
