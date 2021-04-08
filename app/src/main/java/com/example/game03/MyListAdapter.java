@@ -11,14 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.game03.model.ListData;
+
+import java.util.List;
+
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
 
     private String[] mDataSet;
+    private List<ListData> mListDataSet;
     private Context context;
 
-    public MyListAdapter(String[] dataSet, Context context) {
+    public MyListAdapter(List<ListData> dataSet, Context context) {
 
-        mDataSet = dataSet;
+        //mDataSet = dataSet;
+        mListDataSet = dataSet;
         this.context = context;
     }
 
@@ -51,7 +57,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        holder.tvTask.setText(mDataSet[position]);
+        holder.tvTask.setText(mListDataSet.get(position).getTaskName());
         //holder.tvTask.setBackgroundColor(context.getColor(R.color.white));
         holder.tvTask.setTextColor(context.getColor(R.color.black));
 
@@ -84,7 +90,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        return mListDataSet.size();
     }
 
 }

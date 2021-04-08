@@ -24,6 +24,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.game03.MyListAdapter;
 import com.example.game03.R;
+import com.example.game03.model.ListData;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -35,6 +36,7 @@ import org.altbeacon.beacon.Region;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class HomeFragment extends Fragment implements BeaconConsumer{
@@ -53,6 +55,8 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     protected MyListAdapter myListAdapter;
     protected String[] mDataset;
 
+    protected List<ListData> mListDataSet;
+
     private static final int taskNumber = 7;
 
     protected SwipeRefreshLayout swipeRefreshLayout;
@@ -66,12 +70,10 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         Button btnStart = root.findViewById(R.id.btnStart);
         Button btnStop = root.findViewById(R.id.btnStop);
 
-
-
-        mRecyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
+        mRecyclerView = root.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
-        myListAdapter = new MyListAdapter(mDataset, getApplicationContext());
+        myListAdapter = new MyListAdapter(mListDataSet, getApplicationContext());
         mRecyclerView.setAdapter(myListAdapter);
 
         swipeRefreshLayout = root.findViewById(R.id.refreshLayout);
@@ -114,11 +116,19 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
     private void initDataset() {
         //設定初始的list要有哪些
-        mDataset = new String[taskNumber];
+        //mDataset = new String[taskNumber];
+
+        //for (int i = 0; i < taskNumber; i++) {
+        //    mDataset[i] = "任務#" + (i+1);
+        //}
+
+        mListDataSet = new ArrayList<>();
 
         for (int i = 0; i < taskNumber; i++) {
-            mDataset[i] = "任務#" + (i+1);
+            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false));
         }
+
+
     }
 
     private void initBeacon() {
@@ -131,7 +141,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         beaconManager.setForegroundScanPeriod(DEFAULT_FOREGROUND_SCAN_PERIOD);
         //綁定Activity與BeaconServices
         //準備完成後自動callback下方onBeaconServiceConnect方法
-        beaconManager.bind((BeaconConsumer) this);
+        beaconManager.bind(this);
     }
 
     public void onBeaconServiceConnect(){
