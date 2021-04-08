@@ -118,8 +118,11 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
         mListDataSet = new ArrayList<>();
 
-        for (int i = 0; i < taskNumber; i++) {
+        for (int i = 0; i < taskNumber-3; i++) {
             mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false));
+        }
+        for (int i = 4; i < 7; i++) {
+            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),true));
         }
     }
 

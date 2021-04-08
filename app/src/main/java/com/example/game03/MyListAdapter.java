@@ -1,6 +1,7 @@
 package com.example.game03;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
 
+    private static final String TAG = "Game03"; //log中的String
     private List<ListData> mListDataSet;
     private Context context;
 
@@ -81,6 +83,15 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             case 6:
                 holder.mView.setBackgroundColor(context.getColor(R.color.purple));
                 break;
+        }
+
+        Log.i(TAG,"position="+position+" isFinished="+mListDataSet.get(position).isFinished());
+
+        //判斷isFinished更改checkBox圖片
+        if (mListDataSet.get(position).isFinished() == true){
+            holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_36);
+        }else if (mListDataSet.get(position).isFinished() == false){
+            holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_36);
         }
 
     }
