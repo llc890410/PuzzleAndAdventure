@@ -13,6 +13,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int REQUEST_ENABLE_BLUETOOTH = 2;
 
-    public static int id = 407410405; //玩家id
+    public static int playerID; //玩家id
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
         requestLocationPermissions();
         enableBluetooth();
         enableLocation();
+
+        getPlayerID();
+    }
+
+    private void getPlayerID() {
+        //取得傳過來的Bundle
+        Bundle bundle = getIntent().getExtras();
+        playerID = Integer.parseInt(bundle.getString("ID"));
     }
 
     @Override
@@ -166,6 +175,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    //禁用返回鍵 也就是說按了會回手機主畫面
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
 }

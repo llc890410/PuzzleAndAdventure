@@ -23,7 +23,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     private static final String TAG = "Game03"; //log中的String
     private List<ListData> mListDataSet;
     private Context context;
-    private int playerID = MainActivity.id; //玩家ID
+    private int playerID = MainActivity.playerID; //玩家ID
 
     public MyListAdapter(List<ListData> dataSet, Context context) {
 
