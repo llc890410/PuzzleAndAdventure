@@ -96,7 +96,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         }else if (!mListDataSet.get(position).isFinished()){
             holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_36);
         }
-        //
+        //Button Unlock VISIBLE
         if (mListDataSet.get(position).isSearched()){
             holder.btnUnlock.setVisibility(View.VISIBLE);
         }else if (!mListDataSet.get(position).isSearched()){
