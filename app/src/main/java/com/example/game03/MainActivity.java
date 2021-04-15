@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int REQUEST_ENABLE_BLUETOOTH = 2;
 
+    public static int id = 407410405; //玩家id
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
