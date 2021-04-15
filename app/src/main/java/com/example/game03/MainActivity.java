@@ -51,8 +51,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getPlayerID();
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navPlayerID = (TextView) headerView.findViewById(R.id.navPlayerID);
+        navPlayerID.setText("Player ID: "+playerID);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -67,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
         requestLocationPermissions();
         enableBluetooth();
         enableLocation();
-
-        getPlayerID();
     }
 
     private void getPlayerID() {
