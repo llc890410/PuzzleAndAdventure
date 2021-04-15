@@ -15,15 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Game03">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Game03.NoActionBar">
+            android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.Game03.NoActionBar"></activity>
     </application>
 
 </manifest>
