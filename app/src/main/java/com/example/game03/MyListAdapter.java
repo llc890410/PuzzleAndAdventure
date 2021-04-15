@@ -1,6 +1,8 @@
 package com.example.game03;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     private static final String TAG = "Game03"; //log中的String
     private List<ListData> mListDataSet;
     private Context context;
+    private int testID = 407410405; //玩家ID 測試用
 
     public MyListAdapter(List<ListData> dataSet, Context context) {
 
@@ -64,27 +67,69 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         switch (position){
             case 0:
                 holder.mView.setBackgroundColor(context.getColor(R.color.red));
+                holder.btnUnlock.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
+                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+testID));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                });
                 break;
             case 1:
                 holder.mView.setBackgroundColor(context.getColor(R.color.orange));
+                holder.btnUnlock.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
+                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+testID));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                });
                 break;
             case 2:
                 holder.mView.setBackgroundColor(context.getColor(R.color.yellow));
+                holder.btnUnlock.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
+                    intent.setData(Uri.parse("https://translate.google.com.tw/"));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                });
                 break;
             case 3:
                 holder.mView.setBackgroundColor(context.getColor(R.color.green));
+                holder.btnUnlock.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
+                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+testID));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                });
                 break;
             case 4:
                 holder.mView.setBackgroundColor(context.getColor(R.color.blue));
                 holder.tvTask.setTextColor(context.getColor(R.color.white));
+                holder.btnUnlock.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
+                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+testID));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                });
                 break;
             case 5:
                 holder.mView.setBackgroundColor(context.getColor(R.color.navy));
                 holder.tvTask.setTextColor(context.getColor(R.color.white));
+                holder.btnUnlock.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
+                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+testID));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                });
                 break;
             case 6:
                 holder.mView.setBackgroundColor(context.getColor(R.color.purple));
                 holder.tvTask.setTextColor(context.getColor(R.color.white));
+                holder.btnUnlock.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
+                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+testID));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                });
                 break;
         }
 
