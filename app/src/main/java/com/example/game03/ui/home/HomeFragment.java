@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
     private boolean btnStartState = false;
 
-    protected List<ListData> mListDataSet;
+    protected static List<ListData> mListDataSet;
 
     private final String playerID = MainActivity.playerID;
 
@@ -125,13 +125,13 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         return root;
     }
 
-    public void reMakeRecyclerView() {
+    public static void reMakeRecyclerView() {
         mListDataSet.clear();
         dataSet();
         myListAdapter.notifyDataSetChanged();
     }
 
-    private void dataSet() {
+    private static void dataSet() {
         //設定初始的list要有哪些
 
         for (int i = 0; i < taskNumber; i++) {

@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.playerState [6][0] = Boolean.parseBoolean(snapshot.child("task7").child("isFinished").getValue().toString());
                 MainActivity.playerState [6][1] = Boolean.parseBoolean(snapshot.child("task7").child("isSearched").getValue().toString());
 
+                HomeFragment.reMakeRecyclerView();
             }
 
             @Override
