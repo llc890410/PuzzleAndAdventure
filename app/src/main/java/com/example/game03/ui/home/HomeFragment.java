@@ -54,13 +54,13 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     private BeaconManager beaconManager;
 
     protected RecyclerView mRecyclerView;
-    protected MyListAdapter myListAdapter;
+    public static MyListAdapter myListAdapter;
 
     private boolean btnStartState = false;
 
     protected List<ListData> mListDataSet;
 
-    private String playerID = MainActivity.playerID;
+    private final String playerID = MainActivity.playerID;
 
     private static final int taskNumber = 7;
 
@@ -69,8 +69,8 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        initDataSet();
+        mListDataSet = new ArrayList<>();
+        dataSet();
 
         Button btnStart = root.findViewById(R.id.btnStart);
 
@@ -82,6 +82,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
         swipeRefreshLayout = root.findViewById(R.id.refreshLayout);
         swipeRefreshLayout.setOnRefreshListener(()->{
+            reMakeRecyclerView();
             swipeRefreshLayout.setRefreshing(false);
         });
 
@@ -124,29 +125,19 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         return root;
     }
 
-    private void initDataSet() {
+    public void reMakeRecyclerView() {
+        mListDataSet.clear();
+        dataSet();
+        myListAdapter.notifyDataSetChanged();
+    }
+
+    private void dataSet() {
         //設定初始的list要有哪些
 
-        mListDataSet = new ArrayList<>();
-
-        /*for (int i = 0; i < taskNumber; i++) {
-            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false, false));
-        }*/
-
-        //test data
-        for (int i = 0; i < 2; i++) {
-            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false, false));
+        for (int i = 0; i < taskNumber; i++) {
+            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),
+                    MainActivity.playerState[i][0], MainActivity.playerState[i][1]));
         }
-        for (int i = 2; i < 4; i++) {
-            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),false, true));
-        }
-        for (int i = 4; i < 6; i++) {
-            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),true,false));
-        }
-        for (int i = 6; i < 7; i++) {
-            mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),true,true));
-        }
-
     }
 
     private void initBeacon() {

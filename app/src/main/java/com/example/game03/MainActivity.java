@@ -99,19 +99,20 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG,"onDataChange");
 
                 MainActivity.playerState [0][0] = Boolean.parseBoolean(snapshot.child("task1").child("isFinished").getValue().toString());
-                MainActivity.playerState [0][1] = Boolean.parseBoolean(snapshot.child("task1").child("isScaned").getValue().toString());
+                MainActivity.playerState [0][1] = Boolean.parseBoolean(snapshot.child("task1").child("isSearched").getValue().toString());
                 MainActivity.playerState [1][0] = Boolean.parseBoolean(snapshot.child("task2").child("isFinished").getValue().toString());
-                MainActivity.playerState [1][1] = Boolean.parseBoolean(snapshot.child("task2").child("isScaned").getValue().toString());
+                MainActivity.playerState [1][1] = Boolean.parseBoolean(snapshot.child("task2").child("isSearched").getValue().toString());
                 MainActivity.playerState [2][0] = Boolean.parseBoolean(snapshot.child("task3").child("isFinished").getValue().toString());
-                MainActivity.playerState [2][1] = Boolean.parseBoolean(snapshot.child("task3").child("isScaned").getValue().toString());
+                MainActivity.playerState [2][1] = Boolean.parseBoolean(snapshot.child("task3").child("isSearched").getValue().toString());
                 MainActivity.playerState [3][0] = Boolean.parseBoolean(snapshot.child("task4").child("isFinished").getValue().toString());
-                MainActivity.playerState [3][1] = Boolean.parseBoolean(snapshot.child("task4").child("isScaned").getValue().toString());
+                MainActivity.playerState [3][1] = Boolean.parseBoolean(snapshot.child("task4").child("isSearched").getValue().toString());
                 MainActivity.playerState [4][0] = Boolean.parseBoolean(snapshot.child("task5").child("isFinished").getValue().toString());
-                MainActivity.playerState [4][1] = Boolean.parseBoolean(snapshot.child("task5").child("isScaned").getValue().toString());
+                MainActivity.playerState [4][1] = Boolean.parseBoolean(snapshot.child("task5").child("isSearched").getValue().toString());
                 MainActivity.playerState [5][0] = Boolean.parseBoolean(snapshot.child("task6").child("isFinished").getValue().toString());
-                MainActivity.playerState [5][1] = Boolean.parseBoolean(snapshot.child("task6").child("isScaned").getValue().toString());
+                MainActivity.playerState [5][1] = Boolean.parseBoolean(snapshot.child("task6").child("isSearched").getValue().toString());
                 MainActivity.playerState [6][0] = Boolean.parseBoolean(snapshot.child("task7").child("isFinished").getValue().toString());
-                MainActivity.playerState [6][1] = Boolean.parseBoolean(snapshot.child("task7").child("isScaned").getValue().toString());
+                MainActivity.playerState [6][1] = Boolean.parseBoolean(snapshot.child("task7").child("isSearched").getValue().toString());
+
             }
 
             @Override
