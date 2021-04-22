@@ -16,10 +16,17 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.game03.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -43,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BLUETOOTH = 2;
 
     public static String playerID; //玩家id
-    public boolean playerState [][] = new boolean[][]{{false, false}, {false, false}, {false, false},
+    public static boolean playerState [][] = new boolean[][]{{false, false}, {false, false}, {false, false},
             {false, false}, {false, false}, {false, false}, {false, false}};
+
+    public DatabaseReference refPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +83,42 @@ public class MainActivity extends AppCompatActivity {
         requestLocationPermissions();
         enableBluetooth();
         enableLocation();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        refPlayer = database.getReference().child("player").child("407410405");
+        getDatabaseData();
+    }
+
+    private void getDatabaseData() {
+        Log.e(TAG,"getDatabaseData");
+
+        refPlayer.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                Log.d(TAG,"onDataChange");
+
+                MainActivity.playerState [0][0] = Boolean.parseBoolean(snapshot.child("task1").child("isFinished").getValue().toString());
+                MainActivity.playerState [0][1] = Boolean.parseBoolean(snapshot.child("task1").child("isScaned").getValue().toString());
+                MainActivity.playerState [1][0] = Boolean.parseBoolean(snapshot.child("task2").child("isFinished").getValue().toString());
+                MainActivity.playerState [1][1] = Boolean.parseBoolean(snapshot.child("task2").child("isScaned").getValue().toString());
+                MainActivity.playerState [2][0] = Boolean.parseBoolean(snapshot.child("task3").child("isFinished").getValue().toString());
+                MainActivity.playerState [2][1] = Boolean.parseBoolean(snapshot.child("task3").child("isScaned").getValue().toString());
+                MainActivity.playerState [3][0] = Boolean.parseBoolean(snapshot.child("task4").child("isFinished").getValue().toString());
+                MainActivity.playerState [3][1] = Boolean.parseBoolean(snapshot.child("task4").child("isScaned").getValue().toString());
+                MainActivity.playerState [4][0] = Boolean.parseBoolean(snapshot.child("task5").child("isFinished").getValue().toString());
+                MainActivity.playerState [4][1] = Boolean.parseBoolean(snapshot.child("task5").child("isScaned").getValue().toString());
+                MainActivity.playerState [5][0] = Boolean.parseBoolean(snapshot.child("task6").child("isFinished").getValue().toString());
+                MainActivity.playerState [5][1] = Boolean.parseBoolean(snapshot.child("task6").child("isScaned").getValue().toString());
+                MainActivity.playerState [6][0] = Boolean.parseBoolean(snapshot.child("task7").child("isFinished").getValue().toString());
+                MainActivity.playerState [6][1] = Boolean.parseBoolean(snapshot.child("task7").child("isScaned").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "loadPost:onCancelled", error.toException());
+            }
+        });
     }
 
     private void getPlayerID() {
