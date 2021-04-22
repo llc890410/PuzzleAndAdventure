@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         enableLocation();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        refPlayer = database.getReference().child("player").child("407410405");
+        refPlayer = database.getReference().child("player").child(playerID);
         getDatabaseData();
     }
 
