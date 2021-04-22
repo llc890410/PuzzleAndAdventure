@@ -139,9 +139,16 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
         //判斷isFinished更改checkBox圖片
         if (mListDataSet.get(position).isFinished()){
-            holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_36);
+            if (position < 4)
+                holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_black_36);
+            else
+                holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_36);
+
         }else if (!mListDataSet.get(position).isFinished()){
-            holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_36);
+            if(position < 4)
+                holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_black_36);
+            else
+                holder.imgCheckbox.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_36);
         }
         //Button Unlock VISIBLE
         if (mListDataSet.get(position).isSearched()){
