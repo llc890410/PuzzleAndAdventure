@@ -19,8 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.game03.Adapter.MyListAdapter;
+import com.example.game03.MainActivity;
 import com.example.game03.R;
 import com.example.game03.model.ListData;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -52,6 +55,10 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
     protected List<ListData> mListDataSet;
 
+    private String playerID = MainActivity.playerID;
+
+    private DatabaseReference refPlayer;
+
     private static final int taskNumber = 7;
 
     protected SwipeRefreshLayout swipeRefreshLayout;
@@ -59,6 +66,9 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        refPlayer = database.getReference().child("player").child(playerID);
 
         initDataSet();
 
