@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BLUETOOTH = 2;
 
     public static String playerID; //玩家id
+    public boolean playerState [][] = new boolean[][]{{false, false}, {false, false}, {false, false},
+            {false, false}, {false, false}, {false, false}, {false, false}};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
