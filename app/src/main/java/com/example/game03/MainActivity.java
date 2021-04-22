@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int REQUEST_ENABLE_BLUETOOTH = 2;
 
-    public static int playerID; //玩家id
+    public static String playerID; //玩家id
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        TextView navPlayerID = (TextView) headerView.findViewById(R.id.navPlayerID);
+        TextView navPlayerID = headerView.findViewById(R.id.navPlayerID);
         navPlayerID.setText("Player ID: "+playerID);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private void getPlayerID() {
         //取得傳過來的Bundle
         Bundle bundle = getIntent().getExtras();
-        playerID = Integer.parseInt(bundle.getString("ID"));
+        playerID = bundle.getString("ID");
     }
 
     @Override
