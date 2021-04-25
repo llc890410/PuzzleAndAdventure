@@ -131,6 +131,12 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         return root;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        beaconManager.unbind(this);
+    }
+
     public static void reMakeRecyclerView() {
         mListDataSet.clear();
         dataSet();
