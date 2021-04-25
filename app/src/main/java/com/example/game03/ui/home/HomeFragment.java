@@ -36,6 +36,8 @@ import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
+import org.altbeacon.beacon.service.ArmaRssiFilter;
+import org.altbeacon.beacon.service.RunningAverageRssiFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,7 +50,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
     //IBeacon 封包格式
     public static final String IBEACON_FORMAT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
     //感興趣的UUID
-    private static final String FILTER_UUID = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825";
+    private static final String FILTER_UUID = "11d20f4d-4127-47b0-b4e6-75f025783a89";
     private static final long DEFAULT_FOREGROUND_SCAN_PERIOD = 1000L;
     private static final long DEFAULT_FOREGROUND_BETWEEN_SCAN_PERIOD = 1000L;
     private BeaconManager beaconManager;
@@ -64,6 +66,8 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
     private static final int taskNumber = 7;
 
+    private DatabaseReference mDatabase;
+
     protected SwipeRefreshLayout swipeRefreshLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -71,6 +75,8 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         mListDataSet = new ArrayList<>();
         dataSet();
+
+        //mDatabase = FirebaseDatabase.getInstance().getReference().child("player").child(playerID);
 
         Button btnStart = root.findViewById(R.id.btnStart);
 
@@ -148,6 +154,13 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         //设置搜索的时间间隔和周期
         beaconManager.setForegroundBetweenScanPeriod(DEFAULT_FOREGROUND_BETWEEN_SCAN_PERIOD);
         beaconManager.setForegroundScanPeriod(DEFAULT_FOREGROUND_SCAN_PERIOD);
+
+        //ARMA Filter An alternative implementation is the Auto Regressive Moving Average filter
+        beaconManager.setRssiFilterImplClass(ArmaRssiFilter.class);
+
+        //beaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
+        //RunningAverageRssiFilter.setSampleExpirationMilliseconds(5000l);
+
         //綁定Activity與BeaconServices
         //準備完成後自動callback下方onBeaconServiceConnect方法
         beaconManager.bind(this);
@@ -161,15 +174,77 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
                 Log.i(TAG, "找到了"+collection.size()+"個Beacon訊號");
                 //以下對搜尋到的Beacons動作
                 for (Beacon beacon: collection){
-                    Log.e(TAG,beacon.getId1().toString());
-                    //Tuuid.setText(""+beacon.getId1());
-                    //  Tmajor.setText(""+beacon.getId2());
-                    // Tminor.setText(""+beacon.getId3());
-                    // Trssi.setText(""+beacon.getDistance());
-                    Log.i(TAG,"uuid="+beacon.getId1());
-                    Log.i(TAG,"major="+beacon.getId2());
-                    Log.i(TAG,"minor="+beacon.getId3());
-                    Log.i(TAG,"rssi="+beacon.getDistance());
+                    //符合規定UUID
+                    if (beacon.getId1().toString().equals(FILTER_UUID)) {
+                        //Log.d(TAG,"UUID = "+beacon.getId1().toString());
+                        Log.d(TAG,"distance = "+beacon.getDistance());
+                        // distance = 2 euqals meter = 1
+                        // 5meters = 10distance
+                        // 距離大於1m 且 major = 1
+                        if(beacon.getDistance() >= 1 && beacon.getId2().toInt() == 1){
+
+                            //Log.i(TAG,"major="+beacon.getId2());
+                            //Log.i(TAG,"minor="+beacon.getId3());
+
+                            //change by minor
+                            switch (beacon.getId3().toInt()){
+
+                                case 1:
+                                    Log.e(TAG,"task = "+beacon.getId3());
+                                    if (MainActivity.playerState[0][1] == false){
+                                        MainActivity.refPlayer.child("task1").child("isSearched").setValue(true);
+                                        Log.e(TAG,"="+MainActivity.playerState[0][1]);
+                                    }
+                                    break;
+                                case 2:
+                                    Log.e(TAG,"task = "+beacon.getId3());
+                                    if (MainActivity.playerState[1][1] == false){
+                                        MainActivity.refPlayer.child("task2").child("isSearched").setValue(true);
+                                        Log.e(TAG,"="+MainActivity.playerState[1][1]);
+                                    }
+                                    break;
+                                case 3:
+                                    Log.e(TAG,"task = "+beacon.getId3());
+                                    if (MainActivity.playerState[2][1] == false){
+                                        MainActivity.refPlayer.child("task3").child("isSearched").setValue(true);
+                                        Log.e(TAG,"="+MainActivity.playerState[2][1]);
+                                    }
+                                    break;
+                                case 4:
+                                    Log.e(TAG,"task = "+beacon.getId3());
+                                    if (MainActivity.playerState[3][1] == false){
+                                        MainActivity.refPlayer.child("task4").child("isSearched").setValue(true);
+                                        Log.e(TAG,"="+MainActivity.playerState[3][1]);
+                                    }
+                                    break;
+                                case 5:
+                                    Log.e(TAG,"task = "+beacon.getId3());
+                                    if (MainActivity.playerState[4][1] == false){
+                                        MainActivity.refPlayer.child("task5").child("isSearched").setValue(true);
+                                        Log.e(TAG,"="+MainActivity.playerState[4][1]);
+                                    }
+                                    break;
+                                case 6:
+                                    Log.e(TAG,"task = "+beacon.getId3());
+                                    if (MainActivity.playerState[5][1] == false){
+                                        MainActivity.refPlayer.child("task6").child("isSearched").setValue(true);
+                                        Log.e(TAG,"="+MainActivity.playerState[5][1]);
+                                    }
+                                    break;
+                                case 7:
+                                    Log.e(TAG,"task = "+beacon.getId3());
+                                    if (MainActivity.playerState[6][1] == false){
+                                        MainActivity.refPlayer.child("task7").child("isSearched").setValue(true);
+                                        Log.e(TAG,"="+MainActivity.playerState[6][1]);
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    //Log.i(TAG,"uuid = "+beacon.getId1());
+                    //Log.i(TAG,"major = "+beacon.getId2());
+                    //Log.i(TAG,"minor = "+beacon.getId3());
+                    //Log.i(TAG,"distance = "+beacon.getDistance());
                 }
             }
         });

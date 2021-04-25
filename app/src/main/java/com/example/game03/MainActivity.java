@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public static boolean playerState [][] = new boolean[][]{{false, false}, {false, false}, {false, false},
             {false, false}, {false, false}, {false, false}, {false, false}};
 
-    public DatabaseReference refPlayer;
+    public static DatabaseReference refPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
