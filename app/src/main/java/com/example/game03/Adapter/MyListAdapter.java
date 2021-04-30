@@ -71,7 +71,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 holder.mView.setBackgroundColor(context.getColor(R.color.red));
                 holder.btnUnlock.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
-                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+playerID));
+                    intent.setData(Uri.parse("http://s07.tku.edu.tw/~407410942/"+"?id="+playerID));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 });
@@ -80,7 +80,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 holder.mView.setBackgroundColor(context.getColor(R.color.orange));
                 holder.btnUnlock.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
-                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+playerID));
+                    intent.setData(Uri.parse("http://s07.tku.edu.tw/~407410942/index2nd.html"+"?id="+playerID));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 });
@@ -89,7 +89,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 holder.mView.setBackgroundColor(context.getColor(R.color.yellow));
                 holder.btnUnlock.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
-                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+playerID));
+                    intent.setData(Uri.parse("http://s07.tku.edu.tw/~407410942/index3rd.html"+"?id="+playerID));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 });
@@ -98,7 +98,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 holder.mView.setBackgroundColor(context.getColor(R.color.green));
                 holder.btnUnlock.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
-                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+playerID));
+                    intent.setData(Uri.parse("http://s07.tku.edu.tw/~407410942/index4th.html"+"?id="+playerID));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 });
@@ -108,7 +108,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 holder.tvTask.setTextColor(context.getColor(R.color.white));
                 holder.btnUnlock.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
-                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+playerID));
+                    intent.setData(Uri.parse("http://s07.tku.edu.tw/~407410942/index5th.html"+"?id="+playerID));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 });
@@ -118,7 +118,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 holder.tvTask.setTextColor(context.getColor(R.color.white));
                 holder.btnUnlock.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
-                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+playerID));
+                    intent.setData(Uri.parse("http://s07.tku.edu.tw/~407410942/index6th.html"+"?id="+playerID));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 });
@@ -128,7 +128,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 holder.tvTask.setTextColor(context.getColor(R.color.white));
                 holder.btnUnlock.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW); //開啟瀏覽器的Intent
-                    intent.setData(Uri.parse("https://www.google.com"+"/?id="+playerID));
+                    intent.setData(Uri.parse("http://s07.tku.edu.tw/~407410942/index7th.html"+"?id="+playerID));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 });
