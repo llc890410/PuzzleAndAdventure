@@ -177,7 +177,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
                     if (beacon.getId1().toString().equals(FILTER_UUID)) {
                         //Log.d(TAG,"UUID = "+beacon.getId1().toString());
                         Log.d(TAG,"distance = "+beacon.getDistance());
-                        // distance = 2 euqals meter = 1
+                        // distance = 2 equal meter = 1
                         // 5meters = 10distance
                         // 距離小於10m 且 major = 1
                         if(beacon.getDistance() <= 10 && beacon.getId2().toInt() == 1){
