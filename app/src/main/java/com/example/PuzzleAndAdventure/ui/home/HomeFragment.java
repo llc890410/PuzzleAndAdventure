@@ -1,4 +1,4 @@
-package com.example.game03.ui.home;
+package com.example.PuzzleAndAdventure.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,17 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.game03.Adapter.MyListAdapter;
-import com.example.game03.MainActivity;
-import com.example.game03.R;
-import com.example.game03.model.ListData;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.PuzzleAndAdventure.Adapter.MyListAdapter;
+import com.example.PuzzleAndAdventure.MainActivity;
+import com.example.PuzzleAndAdventure.R;
+import com.example.PuzzleAndAdventure.model.ListData;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -37,7 +31,6 @@ import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.service.ArmaRssiFilter;
-import org.altbeacon.beacon.service.RunningAverageRssiFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;

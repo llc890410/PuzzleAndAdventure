@@ -1,4 +1,4 @@
-package com.example.game03.Adapter;
+package com.example.PuzzleAndAdventure.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.game03.MainActivity;
-import com.example.game03.R;
-import com.example.game03.model.ListData;
+import com.example.PuzzleAndAdventure.MainActivity;
+import com.example.PuzzleAndAdventure.R;
+import com.example.PuzzleAndAdventure.model.ListData;
 
 import java.util.List;
 

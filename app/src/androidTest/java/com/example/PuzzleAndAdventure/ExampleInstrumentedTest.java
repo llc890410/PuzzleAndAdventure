@@ -1,4 +1,4 @@
-package com.example.game03;
+package com.example.PuzzleAndAdventure;
 
 import android.content.Context;
 

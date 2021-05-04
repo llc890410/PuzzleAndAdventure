@@ -1,4 +1,4 @@
-package com.example.game03.model;
+package com.example.PuzzleAndAdventure.model;
 
 public class ListData {
     private int taskId;

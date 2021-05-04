@@ -1,4 +1,4 @@
-package com.example.game03;
+package com.example.PuzzleAndAdventure;
 
 import androidx.appcompat.app.AppCompatActivity;
 
