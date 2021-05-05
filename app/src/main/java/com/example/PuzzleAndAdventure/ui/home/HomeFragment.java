@@ -55,11 +55,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
     protected static List<ListData> mListDataSet;
 
-    private final String playerID = MainActivity.playerID;
-
     private static final int taskNumber = 7;
-
-    private DatabaseReference mDatabase;
 
     protected SwipeRefreshLayout swipeRefreshLayout;
 
@@ -68,8 +64,6 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         mListDataSet = new ArrayList<>();
         dataSet();
-
-        //mDatabase = FirebaseDatabase.getInstance().getReference().child("player").child(playerID);
 
         Button btnStart = root.findViewById(R.id.btnStart);
 
@@ -141,7 +135,7 @@ public class HomeFragment extends Fragment implements BeaconConsumer{
 
         for (int i = 0; i < taskNumber; i++) {
             mListDataSet.add(new ListData(i+1,"Mission#"+(i+1),
-                    MainActivity.playerState[i][0], MainActivity.playerState[i][1]));
+            MainActivity.playerState[i][0], MainActivity.playerState[i][1]));
         }
     }
 
