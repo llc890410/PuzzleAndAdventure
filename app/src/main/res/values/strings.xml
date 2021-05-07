@@ -8,4 +8,6 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_help">Help</string>
+    <string name="mission">任務</string>
+    <string name="unlock">解鎖</string>
 </resources>
